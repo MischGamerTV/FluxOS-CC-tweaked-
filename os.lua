@@ -16,14 +16,23 @@ local function loginScreen()
     -- Username input
     term.setCursorPos(8, 10)
     term.write("Username: ")
+    term.setBackgroundColor(colors.purple)
+    term.setTextColor(colors.white)
     term.setCursorPos(20, 10)
     local user = read()
     
     -- Password input
+    term.setBackgroundColor(colors.purple)
+    term.setTextColor(colors.white)
     term.setCursorPos(8, 12)
     term.write("Password: ")
+    term.setBackgroundColor(colors.purple)
+    term.setTextColor(colors.white)
     term.setCursorPos(20, 12)
     local pass = read("*")
+    
+    term.setBackgroundColor(colors.purple)
+    term.setTextColor(colors.white)
     
     if user == "admin" and pass == "1234" then
       return true
