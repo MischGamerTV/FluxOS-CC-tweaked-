@@ -7,12 +7,6 @@ local function loginScreen()
     term.setBackgroundColor(colors.purple)
     term.setTextColor(colors.white)
     
-    -- Clear screen with purple background
-    for i = 1, select(2, term.getSize()) do
-      term.setCursorPos(1, i)
-      term.clearLine()
-    end
-    
     -- Title
     term.setCursorPos(10, 5)
     term.write("FLUX OS")
@@ -22,26 +16,18 @@ local function loginScreen()
     -- Username input
     term.setCursorPos(8, 10)
     term.write("Username: ")
-    term.setBackgroundColor(colors.black)
-    term.setTextColor(colors.white)
     term.setCursorPos(20, 10)
     local user = read()
     
     -- Password input
-    term.setBackgroundColor(colors.purple)
-    term.setTextColor(colors.white)
     term.setCursorPos(8, 12)
     term.write("Password: ")
-    term.setBackgroundColor(colors.black)
-    term.setTextColor(colors.white)
     term.setCursorPos(20, 12)
     local pass = read("*")
     
     if user == "admin" and pass == "1234" then
       return true
     else
-      term.setBackgroundColor(colors.purple)
-      term.setTextColor(colors.white)
       term.setCursorPos(8, 14)
       term.write("Invalid credentials!")
       sleep(2)
@@ -147,15 +133,8 @@ local function calculator()
     term.write("===========")
     
     -- Display
-    term.setCursorPos(6, 6)
-    term.setBackgroundColor(colors.black)
-    term.setTextColor(colors.white)
-    term.write(string.rep(" ", 20))
-    term.setCursorPos(8, 6)
-    term.write(display)
-    
-    term.setBackgroundColor(colors.purple)
-    term.setTextColor(colors.white)
+    term.setCursorPos(5, 6)
+    term.write("Result: " .. display)
     
     term.setCursorPos(5, 9)
     term.write("[7] [8] [9] [+]")
