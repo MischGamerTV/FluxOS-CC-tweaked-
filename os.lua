@@ -67,12 +67,12 @@ local function desktopMenu()
       fileBrowser()
     elseif key == keys.four then
       term.clear()
-      term.setBackgroundColor(colors.black)
+      term.setBackgroundColor(colors.purple)
       term.setTextColor(colors.white)
       os.shutdown()
     elseif key == keys.five then
       term.clear()
-      term.setBackgroundColor(colors.black)
+      term.setBackgroundColor(colors.purple)
       term.setTextColor(colors.white)
       os.reboot()
     end
