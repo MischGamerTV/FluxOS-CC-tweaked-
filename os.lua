@@ -80,41 +80,47 @@ local function desktopMenu()
 end
 
 local function systemInfo()
-  term.clear()
-  term.setBackgroundColor(colors.purple)
-  term.setTextColor(colors.white)
-  
-  term.setCursorPos(8, 2)
-  term.write("SYSTEM INFO")
-  term.setCursorPos(8, 3)
-  term.write("===========")
-  
-  term.setCursorPos(5, 5)
-  term.write("OS: FluxOS v1.0")
-  term.setCursorPos(5, 6)
-  term.write("Lua: " .. _VERSION)
-  term.setCursorPos(5, 7)
-  term.write("Computer ID: " .. os.getComputerID())
-  term.setCursorPos(5, 8)
-  term.write("Label: " .. (os.getComputerLabel() or "None"))
-  
-  term.setCursorPos(5, 10)
-  term.write("Peripherals:")
-  
-  local periphList = peripheral.getNames()
-  if #periphList > 0 then
-    for i, peri in ipairs(periphList) do
-      term.setCursorPos(7, 11 + i - 1)
-      term.write("- " .. peri .. " (" .. peripheral.getType(peri) .. ")")
+  while true do
+    term.clear()
+    term.setBackgroundColor(colors.purple)
+    term.setTextColor(colors.white)
+    
+    term.setCursorPos(8, 2)
+    term.write("SYSTEM INFO")
+    term.setCursorPos(8, 3)
+    term.write("===========")
+    
+    term.setCursorPos(5, 5)
+    term.write("OS: FluxOS v1.0")
+    term.setCursorPos(5, 6)
+    term.write("Lua: " .. _VERSION)
+    term.setCursorPos(5, 7)
+    term.write("Computer ID: " .. os.getComputerID())
+    term.setCursorPos(5, 8)
+    term.write("Label: " .. (os.getComputerLabel() or "None"))
+    
+    term.setCursorPos(5, 10)
+    term.write("Peripherals:")
+    
+    local periphList = peripheral.getNames()
+    if #periphList > 0 then
+      for i, peri in ipairs(periphList) do
+        term.setCursorPos(7, 11 + i - 1)
+        term.write("- " .. peri .. " (" .. peripheral.getType(peri) .. ")")
+      end
+    else
+      term.setCursorPos(7, 12)
+      term.write("None")
     end
-  else
-    term.setCursorPos(7, 12)
-    term.write("None")
+    
+    term.setCursorPos(5, 18)
+    term.write("[Q] Back to Menu")
+    
+    local event, key = os.pullEvent("key")
+    if key == keys.q then
+      break
+    end
   end
-  
-  term.setCursorPos(5, 18)
-  term.write("Press any key to return...")
-  os.pullEvent("key")
 end
 
 local function calculator()
@@ -145,7 +151,7 @@ local function calculator()
     term.setCursorPos(5, 12)
     term.write("[0] [.] [=] [/]")
     term.setCursorPos(5, 14)
-    term.write("[C] Clear  [Q] Quit")
+    term.write("[C] Clear  [Q] Back")
     
     local event, key = os.pullEvent("key")
     
@@ -214,7 +220,7 @@ local function fileBrowser()
     table.sort(fileList)
     
     for i, file in ipairs(fileList) do
-      if i > 12 then break end
+      if i > 10 then break end
       if fs.isDir(fs.combine(path, file)) then
         term.write("[" .. file .. "]")
       else
@@ -223,8 +229,8 @@ local function fileBrowser()
       term.setCursorPos(5, 7 + i)
     end
     
-    term.setCursorPos(5, 20)
-    term.write("[B] Back  [Q] Quit")
+    term.setCursorPos(5, 18)
+    term.write("[B] Back  [Q] Return to Menu")
     
     local event, key = os.pullEvent("key")
     
